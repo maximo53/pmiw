@@ -21,7 +21,9 @@ let yduende = -100;
 let yduendeFinal = 280;
 let velDuende = 12;
 
-let duendecayendo = 0; 
+let duendecayendo = 0;
+
+let imgBoton1;
 
 function preload() {
   imgfondo = loadImage('data/fondo1.png');
@@ -37,12 +39,13 @@ function preload() {
   for (let i = 0; i < CANT_TORRE; i++) {
     ftorre.push(loadImage('data/torre' + i + '.png'));
   }
+  
+  imgBoton1 = loadImage('data/boton1.png');
 }
 
 function setup() {
   createCanvas(800, 600);
 }
-
 
 function draw() {
   image(imgfondo, 0, 0, width, height);
@@ -51,7 +54,6 @@ function draw() {
 
   xsoldado += velSoldado;
   animacion(fsoldado, xsoldado, ySoldado, 6);
-
 
   if (ubicacion(xsoldado, 400) && duendecayendo === 0) {
     duendecayendo = 1; 
@@ -77,6 +79,7 @@ function draw() {
 
   } else if (duendecayendo === 3) {
     framefijo(fduendes, 0, xDuende, yduende);
+    image(imgBoton1, 0, 0); 
   }
 }
 
@@ -89,8 +92,8 @@ function framefijo(frames, numFrame, x, y) {
   image(frames[numFrame], x, y);
 }
 
-function ubicacion(posicionactual, objetivo) {
-  return posicionactual >= objetivo;
+function ubicacion(posicion, objetivo) {
+  return posicion >= objetivo;
 }
 
 function reiniciar() {
